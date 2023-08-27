@@ -1,0 +1,89 @@
+#: import get_color_from_hex kivy.utils.get_color_from_hex
+Screen:
+    name: "add_activity"
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "addact_img.jpg"
+
+    MDIconButton:
+        icon: "arrow-left"
+        pos_hint: {'center_y': .96}
+        on_release: app.back2()
+
+    MDLabel:
+        id: xx
+        text: "Ajouter une activitée"
+        pos_hint: {"center_x": .5, "center_y": .89}
+        font_size: "35sp"
+        halign: "center"
+    
+    MDFloatLayout:
+        pos_hint: {"center_x": .5, "center_y": .69}
+        size_hint: .8, .08
+        md_bg_color: 1, 1, 1, 1
+        radius: [25,]
+
+        TextInput:
+            id: date
+            hint_text: "la date"
+            icon_right: "account"
+            pos_hint: {"center_x": .5, "center_y": .5}
+            background_color: 0, 0, 0, 0
+            padding: 15
+        
+        MDIconButton:
+            icon: "calendar"
+            pos_hint: {"right": 1, "center_y": .5}
+            on_release: app.date_dialog2()
+    
+    MDFloatLayout:
+        pos_hint: {"center_x": .5, "center_y": .59}
+        size_hint: .8, .08
+        md_bg_color: 1, 1, 1, 1
+        radius: [25,]
+
+        TextInput:
+            id: rt_previous
+            hint_text: "Rentrée précédante"
+            pos_hint: {"center_x": .5, "center_y": .5}
+            background_color: 0, 0, 0, 0
+            padding: 15
+
+    MDFloatLayout:
+        pos_hint: {"center_x": .5, "center_y": .49}
+        size_hint: .8, .08
+        md_bg_color: 1, 1, 1, 1
+        radius: [25,]
+        
+        TextInput:
+            id: depenses
+            hint_text: "Dépenses du jour"
+            pos_hint: {"center_x": .5, "center_y": .5}
+            background_color: 0, 0, 0, 0
+            padding: 15
+
+    MDFloatLayout:
+        pos_hint: {"center_x": .5, "center_y": .39}
+        size_hint: .8, .08
+        md_bg_color: 1, 1, 1, 1
+        radius: [25,]
+
+        TextInput:
+            id: production
+            hint_text: "Production du jour"
+            # icon_right: "money"
+            pos_hint: {"center_x": .5, "center_y": .5}
+            background_color: 0, 0, 0, 0
+            padding: 15
+
+
+    MDRoundFlatButton:
+        text: "Ajouter"
+        text_color: 0, 1, 0, 1
+        size_hint: .8, .09
+        pos_hint: {"center_x": .5, "center_y": .15}
+        
+        on_release: app.add_act(date.text, rt_previous.text, depenses.text, production.text)

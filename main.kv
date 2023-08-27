@@ -1,0 +1,61 @@
+#: import get_color_from_hex kivy.utils.get_color_from_hex
+
+MDScreen:
+    name: "page"
+
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        MDLabel:
+            text: "Mes Projets"
+            pos_hint: {"center_x": .6, "center_y": .96}
+            font_name: "Poppins-SemiBold.ttf"
+            font_size: "25sp"
+
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {'center_x': .05, 'center_y': .96}
+            on_release: app.back_accueil()
+
+        MDIconButton:
+            icon: "plus"
+            pos_hint: {"center_x": .5, "center_y": .1}
+            user_font_size: "30sp"
+            md_bg_color: 0, 179/255, 0, 1
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            on_release: app.addnewpage()
+
+        MDIconButton:
+            icon: "trash-can"
+            text_color: 0, 1, 0, 1
+            size_hint: None, None
+            pos_hint: {"center_x": .82, "center_y": .96}
+            size: (100, 190)
+            on_release: app.delete()
+
+        MDIconButton:
+            icon: "update"
+            text_color: 0, 1, 0, 1
+            size_hint: None, None
+            pos_hint: {"center_x": .89, "center_y": .96}
+            size: (100, 190)
+            on_release: app.updatenewpage()
+
+
+        MDIconButton:
+            icon: "dots-vertical"
+            text_color: 0, 1, 0, 1
+            size_hint: None, None
+            pos_hint: {"center_x": .96, "center_y": .96}
+            size: (100, 190)
+            on_release: 
+                app.detail_screen()
+               
+    
+        AnchorLayout:
+            id: datatable
+            pos_hint: {"center_x": .5, "center_y": .5}
+
+        
+        
+        

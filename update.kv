@@ -1,0 +1,77 @@
+#: import utils kivy.utils
+
+Screen:
+    name: "update"
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "update_img.jpg"
+
+    MDIconButton:
+        icon: "arrow-left"
+        pos_hint: {'center_y': .96}
+        on_release: app.back()
+
+    MDLabel:
+        id: xx
+        text: "Modification Du Projet"
+        pos_hint: {"center_x": .45, "center_y": .96}
+        font_size: "25sp"
+        halign: "center"
+    
+    
+
+    MDFloatLayout:
+        pos_hint: {"center_x": .5, "center_y": .6}
+        size_hint: .8, .08
+        md_bg_color: 1, 1, 1, 1
+        radius: [25,]
+        
+        TextInput:
+            id: nom
+            hint_text: "Nom Du Projet"
+            pos_hint: {"center_x": .5, "center_y": .5}
+            background_color: 0, 0, 0, 0
+            padding: 15
+        
+    MDFloatLayout:
+        pos_hint: {"center_x": .5, "center_y": .5}
+        size_hint: .8, .08
+        md_bg_color: 1, 1, 1, 1
+        radius: [25,]
+
+        TextInput:
+            id: date_creation
+            hint_text: "Date de création"
+            padding: 15
+            pos_hint: {"center_x": .5, "center_y": .5}
+            background_color: 0, 0, 0, 0
+        
+        MDIconButton:
+            icon: "calendar"
+            pos_hint: {'right': 1, 'center_y': .5}
+            on_release: app.date_dialog3()
+
+    MDFloatLayout:
+        pos_hint: {"center_x": .5, "center_y": .4}
+        size_hint: .8, .08
+        md_bg_color: 1, 1, 1, 1
+        radius: [25,]
+
+        TextInput:
+            id: capital
+            hint_text: "Capital"
+            pos_hint: {"center_x": .5, "center_y": .5}
+            background_color: 0, 0, 0, 0
+            padding: 15
+
+    # buttons
+    
+    MDRoundFlatButton:
+        text: "Valider les Modifs"
+        text_color: 0, 1, 0, 1
+        size_hint: .8, .09
+        pos_hint: {"center_x": .5, "center_y": .15}
+        on_release: app.update(nom.text, date_creation.text, capital.text)

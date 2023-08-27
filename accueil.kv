@@ -1,0 +1,128 @@
+<ActivityCard>:
+    ripple_behavior: True
+    md_bg_color: 0, 0, 0, .5
+    size_hint_y: None
+    padding: [10, 0, 10, 0]
+    spacing: 10
+    height: progress.height + 10
+   
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: [0, 0, 0, 10]
+        spacing: 10
+        pos_hint: {'center_y': .4}
+        MDLabel:
+            text: "date: " + str(root.date)
+            color: 1, 1, 1, 1 
+
+        MDLabel:
+            text: "dépenses: " + str(root.dep) + " GNF"
+            color: 1, 1, 1, 1 
+
+        MDLabel:
+            text: "Gains: " + str(root.gains) + " GNF"
+            color: 1, 1, 1, 1 
+    MDIconButton:
+        id: progress
+        icon: "trending-up" if root.gains > root.dep else "trending-down"
+        theme_text_color: "Custom"
+        text_color: (0, 1, 0, 1) if root.gains > root.dep else (1, 0, 0, 1)
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        md_bg_color: "gray"
+        pos_hint: {'center_y': .5}
+        radius: [30, ]
+
+<MyCard>:
+    size_hint: .15, .25
+    # md_bg_color: 1, 1, 1, 1
+    elevation: 5
+    orientation: 'vertical'
+    
+    MDLabel:
+        text: root.sect
+        halign: "center"
+        font_name: "Poppins-SemiBold.ttf"
+        color: 1, 1, 1, 1 
+        bold: True
+    
+    MDLabel:
+        text: str(root.val)
+        halign: "center"
+        color: 1, 1, 1, 1 
+
+
+MDScreen:
+    name: "accueil"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "avatar.jpg"
+    MDFloatLayout:
+        # md_bg_color: 0, 0, 0, 1
+
+        MDLabel:
+            text: "Mon Portefeuille"
+            pos_hint: {'center_x': .56, 'center_y': .95}
+            font_name: "Poppins-SemiBold"
+            font_size: "30sp"
+            color: 1, 1, 1, 1 
+
+        MDLabel:
+            id: current_date
+            pos_hint: {"center_x": .565, "center_y": .89}
+            font_name: "Poppins-Regular.ttf"
+            font_size: "18sp"
+            color: 1, 1, 1, 1
+    MDFloatLayout:
+        size_hint_y: .75
+        # md_bg_color: 1, 1, 1, 1
+        radius: [20, 20, 0, 0]
+
+        MDLabel:
+            text: "Activitées(" + str(app.act_len) + ")"
+            halign: "center"
+            bold: True
+            pos_hint: {'center_y': .8}
+            font_name: "Poppins-SemiBold.ttf"
+            color: 1, 1, 1, 1 
+        
+        MDScrollView:
+            do_scroll_y: True
+            size_hint_y: .75
+            md_bg_color: 0, 0, 0, .4
+
+            GridLayout:
+                id: act_list
+                cols: 1
+                height: self.minimum_height
+                row_default_height: 80
+                size_hint_y: None           
+                padding: 15, 10
+                spacing: 15, 10
+
+    GridLayout:
+        cols: 3
+        spacing: 10
+        size_hint: .95, .15
+        pos_hint: {'center_x': .5, 'center_y': .75}
+        MyCard:
+            sect: "Projets"
+            val: str(app.project_count)
+            on_press: app.all_projectnew_page()
+            md_bg_color: "blue"
+           
+        MyCard:
+            sect: "Gains"
+            md_bg_color: 0, 179/255, 0, 1
+            val: app.somme_gain + " GNF"
+        
+
+        MyCard:
+            sect: "Dépenses"
+            md_bg_color: 1, 170/255, 23/255, 1
+            val: app.somme_dep + " GNF"
+            
+            
+    
+
